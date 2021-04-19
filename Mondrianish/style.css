@@ -1,0 +1,71 @@
+body {
+  background-color: rgb(148, 178, 202);
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+h1 {
+text-align: center;   
+}
+
+.work_area {
+  height: 600px;
+  content: none;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid gray;
+  background-color: rgb(240, 227, 211);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.mondrian_box {
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  border: 5px solid black;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+.box {
+  background-color: white;
+  border: 5px solid black;
+}
+
+.palette {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.color_box {
+  height: 50px;
+  width: 50px;
+  border: 2px solid black;
+}
+
+#color1 {
+  background-color: red;
+}
+
+#color2 {
+  background-color: blue;
+}
+
+#color3 {
+  background-color: yellow;
+}
+
+#color4 {
+  background-color: white;
+}
