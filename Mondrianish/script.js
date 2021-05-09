@@ -1,12 +1,14 @@
 function generateRandomSeries() {
-    let canvas_size = getComputedStyle((document.getElementById("canvas")))
-    .width.replace(/\D/g,'')
+    let canvas_size = 100
+    
+    // getComputedStyle((document.getElementById("canvas")))
+    // .width.replace(/\D/g,'')
 
     let array = []
     
     // define max and min sizes for rows and columns on canvas. These parameters need to total half the canvas diameter or else there may be strange results.  
-    let max_value = 180
-    let min_value = 20
+    let max_value = 40
+    let min_value = 10
     
     // begins to generate an array of random numbers totalling canvas height/width
 
@@ -49,8 +51,8 @@ function randomizeCanvas() {
 
     let canvas = document.getElementById("canvas");
 
-    let new_columns = generateRandomSeries().join("px ")+"px"
-    let new_rows = generateRandomSeries().join("px ")+"px"
+    let new_columns = generateRandomSeries().join("% ")+"%"
+    let new_rows = generateRandomSeries().join("% ")+"%"
     
     canvas.style.gridTemplateColumns = new_columns
     canvas.style.gridTemplateRows = new_rows
