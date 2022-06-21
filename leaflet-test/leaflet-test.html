@@ -34,11 +34,15 @@
   </head>
   <body>
     <div id="map" style="width: 500px; height: 400px"></div>
-	<button onClick="showCountries()">Show all countries</button>
-	<button onClick="showRegions()">Nigeria Detail</button>
-	<button onClick="clearMap()">Clear Map</button>
+    <button onClick="showCountries()">Show all countries</button>
+    <button onClick="showRegions()">Nigeria Detail</button>
+    <button onClick="clearMap()">Clear Map</button>
     <script>
-      var map = L.map("map").setView([0, 0], 2);
+      var map = L.map("map", {
+        zoomDelta: 0.5,
+        zoomSnap: 0.5,
+        wheelPxPerZoomLevel: 30,
+      }).setView([0, 0], 2);
       var overlayLayers = new L.featureGroup().addTo(map);
       var countryLayer = new L.featureGroup();
       var regionLayer = new L.featureGroup();
@@ -53,7 +57,7 @@
       ).addTo(map);
       const niger = [17.53725294653539, 9.835454216890412];
       const mali = [17.99760014539191, -1.0085116009808328];
-	  const nigeria = [9.55457797831582, 8.013848369966857]
+      const nigeria = [9.55457797831582, 8.013848369966857];
       const honduras = [14.720099884922597, -86.7942812546175];
       const indonesia = [-0.8289234922138033, 114.34320521520704];
 
@@ -73,7 +77,7 @@
         fillOpacity: 0.5,
         radius: 15,
       }).addTo(countryLayer);
-	  L.circleMarker(nigeria, {
+      L.circleMarker(nigeria, {
         fillColor: "blue",
         fillOpacity: 0.5,
         radius: 10,
@@ -110,7 +114,7 @@
         radius: 25,
       }).addTo(regionLayer);
 
-	  showCountries()
+      showCountries();
 
       function clearMap() {
         overlayLayers.clearLayers();
@@ -118,14 +122,14 @@
 
       function showRegions() {
         clearMap();
-		regionLayer.addTo(overlayLayers)
-		map.fitBounds(overlayLayers.getBounds());
+        regionLayer.addTo(overlayLayers);
+        map.fitBounds(overlayLayers.getBounds());
       }
 
-	  function showCountries() {
+      function showCountries() {
         clearMap();
-		countryLayer.addTo(overlayLayers)
-		map.fitBounds(overlayLayers.getBounds());
+        countryLayer.addTo(overlayLayers);
+        map.fitBounds(overlayLayers.getBounds());
       }
     </script>
   </body>
