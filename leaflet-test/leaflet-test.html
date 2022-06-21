@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quick Start - Leaflet</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="width: 500px; height: 400px"></div>
+	<button onClick="showCountries()">Show all countries</button>
+	<button onClick="showRegions()">Nigeria Detail</button>
+	<button onClick="clearMap()">Clear Map</button>
+    <script>
+      var map = L.map("map").setView([0, 0], 2);
+      var overlayLayers = new L.featureGroup().addTo(map);
+      var countryLayer = new L.featureGroup();
+      var regionLayer = new L.featureGroup();
+
+      var tiles = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          minZoom: 1,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }
+      ).addTo(map);
+      const niger = [17.53725294653539, 9.835454216890412];
+      const mali = [17.99760014539191, -1.0085116009808328];
+	  const nigeria = [9.55457797831582, 8.013848369966857]
+      const honduras = [14.720099884922597, -86.7942812546175];
+      const indonesia = [-0.8289234922138033, 114.34320521520704];
+
+      //   Nigeria
+      const abuja = [9.077439149319787, 7.389885501907344];
+      const ibadan = [7.406713145710195, 3.9103971176644157];
+      const kano = [12.024229524316878, 8.575918167721149];
+      const maiduguri = [11.852497245487577, 13.148908342312707];
+
+      L.circleMarker(niger, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 20,
+      }).addTo(countryLayer);
+      L.circleMarker(mali, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 15,
+      }).addTo(countryLayer);
+	  L.circleMarker(nigeria, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 10,
+      }).addTo(countryLayer);
+      L.circleMarker(honduras, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 5,
+      }).addTo(countryLayer);
+      L.circleMarker(indonesia, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 20,
+      }).addTo(countryLayer);
+
+      L.circleMarker(abuja, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 10,
+      }).addTo(regionLayer);
+      L.circleMarker(ibadan, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 15,
+      }).addTo(regionLayer);
+      L.circleMarker(kano, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 20,
+      }).addTo(regionLayer);
+      L.circleMarker(maiduguri, {
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 25,
+      }).addTo(regionLayer);
+
+	  showCountries()
+
+      function clearMap() {
+        overlayLayers.clearLayers();
+      }
+
+      function showRegions() {
+        clearMap();
+		regionLayer.addTo(overlayLayers)
+		map.fitBounds(overlayLayers.getBounds());
+      }
+
+	  function showCountries() {
+        clearMap();
+		countryLayer.addTo(overlayLayers)
+		map.fitBounds(overlayLayers.getBounds());
+      }
+    </script>
+  </body>
+</html>
