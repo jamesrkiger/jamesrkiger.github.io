@@ -10,6 +10,7 @@
       src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"
       crossorigin=""
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
     <style>
       html,
@@ -19,33 +20,128 @@
       }
       .chart-container {
         height: 400px;
-        width: 400px;
+        width: 800px;
       }
     </style>
   </head>
   <body>
     <div class="chart-container">
-    <canvas id="myChart" width="400px" height="400px"></canvas>
+      <canvas id="myChart" width="800px" height="400px"></canvas>
     </div>
 
     <script>
+
+      const timepoints1 = [
+        { x: "2020-01", y: 2 },
+        { x: "2020-02", y: 6 },
+        { x: "2020-03", y: 2 },
+        { x: "2020-04", y: 7 },
+        { x: "2020-05", y: 0 },
+        { x: "2020-06", y: 20 },
+        { x: "2020-07", y: 2 },
+        { x: "2020-08", y: 13 },
+        { x: "2020-09", y: 2 },
+        { x: "2020-10", y: 8 },
+        { x: "2020-11", y: 0 },
+        { x: "2020-12", y: 1 },
+        { x: "2021-01", y: 2 },
+        { x: "2021-02", y: 6 },
+        { x: "2021-03", y: 2 },
+        { x: "2021-04", y: 7 },
+        { x: "2021-05", y: 0 },
+        { x: "2021-06", y: 20 },
+        { x: "2021-07", y: 2 },
+        { x: "2021-08", y: 13 },
+        { x: "2021-09", y: 2 },
+        { x: "2021-10", y: 8 },
+        { x: "2021-11", y: 0 },
+        { x: "2021-12", y: 1 },
+      ];
+
+      const timepoints2 = [
+        { x: "2020-01", y: 1 },
+        { x: "2020-02", y: 5 },
+        { x: "2020-03", y: 7 },
+        { x: "2020-04", y: 10 },
+        { x: "2020-05", y: 3 },
+        { x: "2020-06", y: 0 },
+        { x: "2020-07", y: 20 },
+        { x: "2020-08", y: 15 },
+        { x: "2020-09", y: 1 },
+        { x: "2020-10", y: 4 },
+        { x: "2020-11", y: 20 },
+        { x: "2020-12", y: 1 },
+        { x: "2021-01", y: 2 },
+        { x: "2021-02", y: 6 },
+        { x: "2021-03", y: 2 },
+        { x: "2021-04", y: 7 },
+        { x: "2021-05", y: 0 },
+        { x: "2021-06", y: 20 },
+        { x: "2021-07", y: 2 },
+        { x: "2021-08", y: 13 },
+        { x: "2021-09", y: 2 },
+        { x: "2021-10", y: 8 },
+        { x: "2021-11", y: 0 },
+        { x: "2021-12", y: 1 },
+      ];
+
+      const timepoints3 = [
+        { x: "2020-01", y: 1 },
+        { x: "2020-02", y: 5 },
+        { x: "2020-03", y: 7 },
+        { x: "2020-04", y: 10 },
+        { x: "2020-05", y: 3 },
+        { x: "2020-06", y: 0 },
+        { x: "2020-07", y: 20 },
+        { x: "2020-08", y: 15 },
+        { x: "2020-09", y: 1 },
+        { x: "2020-10", y: 4 },
+        { x: "2020-11", y: 20 },
+        { x: "2020-12", y: 1 },
+        { x: "2021-01", y: 2 },
+        { x: "2021-02", y: 6 },
+        { x: "2021-03", y: 2 },
+        { x: "2021-04", y: 7 },
+        { x: "2021-05", y: 0 },
+        { x: "2021-06", y: 20 },
+        { x: "2021-07", y: 2 },
+        { x: "2021-08", y: 13 },
+        { x: "2021-09", y: 2 },
+        { x: "2021-10", y: 8 },
+        { x: "2021-11", y: 0 },
+        { x: "2021-12", y: 1 },
+      ];
+
       const ctx = document.getElementById("myChart").getContext("2d");
       const myChart = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: ["Afghanistan", "Mali", "Honduras"],
           datasets: [
             {
               label: "Number of attacks",
-              data: [40, 60, 20 ],
-              backgroundColor: [
-                "#188FA7",
-                "#FE617D",
-                "#4B4E6D",
-              ],
+              data: timepoints1,
+              backgroundColor: ["#188FA7"],
               borderRadius: {
-                topRight: 25,
-                topLeft: 25,
+                topRight: 5,
+                topLeft: 5,
+              },
+            },
+            {
+              label: "Number of attacks",
+              data: timepoints2,
+              backgroundColor: ["#f45974"],
+              borderRadius: {
+                topRight: 5,
+                topLeft: 5,
+              },
+            },
+            {
+              label: "Number of attacks",
+              data: timepoints3,
+              backgroundColor: ["#4b4e6d"],
+              borderRadius: {
+                topRight: 5,
+                topLeft: 5,
               },
             },
           ],
@@ -54,6 +150,12 @@
           responsive: true,
           maintainAspectRatio: false,
           scales: {
+            x: {
+              type: "time",
+              time: {
+                unit: "month",
+              },
+            },
             y: {
               beginAtZero: true,
             },
