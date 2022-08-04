@@ -31,14 +31,21 @@
         margin: 0;
       }
 
+      .map-container {
+        height: fit-content;
+        width: fit-content;
+        border: 2px solid black;
+      }
+
       .leaflet-container {
         background: white;
-        outline: 0;
       }
     </style>
   </head>
   <body>
-    <div id="map" style="width: 600px; height: 500px"></div>
+    <div class="map-container">
+    <div id="map" style="width: 700px; height: 500px"></div>
+    </div>
     <script type="text/javascript" src="natural-earth-converted.js"></script>
     <script>
       console.log(naturalEarthData);
@@ -46,7 +53,7 @@
         zoomDelta: 0.5,
         zoomSnap: 0.5,
         wheelPxPerZoomLevel: 30,
-      }).setView([0, 0], 2);
+      })
       var overlayLayers = new L.featureGroup().addTo(map);
       var countryLayer = new L.featureGroup();
 
