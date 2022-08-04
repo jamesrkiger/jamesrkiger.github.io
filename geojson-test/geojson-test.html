@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quick Start - Leaflet</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      .leaflet-container {
+        background: white;
+        outline: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="width: 600px; height: 500px"></div>
+    <script type="text/javascript" src="natural-earth-converted.js"></script>
+    <script>
+      console.log(naturalEarthData);
+      var map = L.map("map", {
+        zoomDelta: 0.5,
+        zoomSnap: 0.5,
+        wheelPxPerZoomLevel: 30,
+      }).setView([0, 0], 2);
+      var overlayLayers = new L.featureGroup().addTo(map);
+      var countryLayer = new L.featureGroup();
+
+      // var tiles = L.tileLayer(
+      //   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      //   {
+      //     minZoom: 1,
+      //     attribution:
+      //       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      //   }
+      // ).addTo(map);
+
+      L.geoJson(naturalEarthData).addTo(countryLayer);
+      countryLayer.addTo(map);
+      map.fitBounds(countryLayer.getBounds());
+
+    </script>
+  </body>
+</html>
